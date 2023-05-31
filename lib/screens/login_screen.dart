@@ -40,13 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(flex: 2, child: Container()),
-            //For instagram logo
-            // SvgPicture.asset(
-            //   'assets/ic_instagram.svg',
-            //   height: 64,
-            //   colorFilter:
-            //       const ColorFilter.mode(primaryColor, BlendMode.srcIn),
-            // ),
+            Text('Logo'),
             const SizedBox(
               height: 64,
             ),
@@ -76,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
-                    color: Colors.deepOrange,
+                    color: Color(051094),
                   ),
                 ),
                 CircleAvatar(
