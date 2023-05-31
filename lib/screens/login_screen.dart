@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelites/resources/auth_methods.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
 
@@ -18,6 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     _emailcontrol.dispose();
     _passcontrol.dispose();
+  }
+
+  void myLoginUser() {
+    MyAuthMethods(FirebaseAuth.instance).myLoginWithEmail(
+        email: _emailcontrol.text,
+        password: _passcontrol.text,
+        context: context);
   }
 
   @override
@@ -59,18 +68,30 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 24,
             ),
-            InkWell(
-              //for login button
-              child: Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: blueColor,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.deepOrange,
+                  ),
                 ),
-                child: const Text('Login'),
-              ),
+                CircleAvatar(
+                  backgroundColor: Colors.white70,
+                  radius: 25,
+                  child: IconButton(
+                    onPressed: myLoginUser,
+                    icon: const Icon(
+                      Icons.arrow_forward,
+                      size: 30,
+                      color: Colors.deepOrange,
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 12,
@@ -81,15 +102,15 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: const Text("Don't have a account?"),
+                  child: const Text("Don't have an account?"),
                 ),
                 GestureDetector(
                   onTap: () {},
-                  //link for going to signup page
+                  //link for going to register page
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text(
-                      'Sign up',
+                      'Register',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
