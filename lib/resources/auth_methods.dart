@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../utils/show_snackbar.dart';
+import '../widgets/show_snackbar.dart';
 
 class MyAuthMethods {
   //creating an instance
