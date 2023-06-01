@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hostelites/screens/complaint_screen.dart';
+import 'package:hostelites/screens/feedback_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int myIndex = 0;
+  final screenList = [HomeScreen(), ComplaintScreen(), FeedbackScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +21,11 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             width: double.infinity,
             height: 150,
-            child: Text(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.blue,
+            ),
+            child: const Text(
               "Welcome back Aliens!",
               style: TextStyle(
                 fontSize: 30,
@@ -20,27 +33,32 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.blue,
-            ),
-          )
+          ),
+          const SizedBox(
+            height: 40,
+          ),
         ]),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.edit),
-          label: 'Complaints',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {});
+            myIndex = index;
+          },
+          currentIndex: myIndex,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.edit),
+              label: 'Complaints',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.feedback),
+              label: 'Feedback',
+            ),
+          ]),
     );
   }
 }

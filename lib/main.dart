@@ -5,10 +5,12 @@ import 'package:hostelites/firebase_options.dart';
 import 'package:hostelites/responsive/mobile_screen.dart';
 import 'package:hostelites/responsive/responsive_screen.dart';
 import 'package:hostelites/responsive/web_screen.dart';
+import 'package:hostelites/screens/complaint_screen.dart';
 import 'package:hostelites/screens/home_screen.dart';
 import 'package:hostelites/screens/login_screen.dart';
 import 'package:hostelites/screens/register.dart';
 import 'package:hostelites/utils/colors.dart';
+import 'package:hostelites/widgets/tile.dart';
 
 void main() async {
   //initialize flutter widgets
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       //   webScreenLayout: webScreen(),
       //   mobileScreenLayout: mobileScreen(),
       // ),
-      home: HomeScreen(),
+      home: (),
     );
   }
 }
