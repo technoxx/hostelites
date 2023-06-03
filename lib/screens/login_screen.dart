@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelites/resources/auth_methods.dart';
+import 'package:hostelites/screens/register.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
 
@@ -101,7 +102,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Text("Don't have an account? "),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
+                    );
+                  },
                   //link for going to register page
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
