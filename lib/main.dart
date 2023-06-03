@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'Hostelites',
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
+        appBarTheme: AppBarTheme(backgroundColor: mainColor),
         textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
         inputDecorationTheme: const InputDecorationTheme(
           focusedBorder: OutlineInputBorder(

@@ -25,17 +25,28 @@ class _NavBarState extends State<NavBar> {
             setState(() {});
             myIndex = index;
           },
+          unselectedItemColor: mainColor,
+          selectedItemColor: secondaryColor,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                CupertinoIcons.home,
+                size: 30,
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.edit),
+              icon: Icon(
+                CupertinoIcons.news,
+                size: 30,
+              ),
               label: 'Complaints',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.feedback),
+              icon: Icon(
+                CupertinoIcons.create,
+                size: 30,
+              ),
               label: 'Feedback',
             ),
           ]),
