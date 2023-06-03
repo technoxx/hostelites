@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelites/screens/home_screen.dart';
+import 'package:hostelites/screens/navbar.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
 import 'package:hostelites/resources/auth_methods.dart';
@@ -157,7 +158,7 @@ class SignupScreenState extends State<SignupScreen> {
                   mySignUp();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => NavBar()),
                   );
                 },
                 //for register   button
