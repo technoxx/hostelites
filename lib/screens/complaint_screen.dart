@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostelites/screens/input_complaint.dart';
 
 class ComplaintScreen extends StatefulWidget {
   const ComplaintScreen({super.key});
@@ -15,11 +16,17 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
         title: Center(child: Text('Complaints')),
       ),
       body: ListView(
+        padding: EdgeInsets.all(20),
         children: [
           Card(
             child: InkWell(
               splashColor: Colors.blue,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InputComplaint()),
+                );
+              },
               child: SizedBox(
                 width: double.infinity,
                 height: 100,

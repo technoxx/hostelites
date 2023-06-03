@@ -7,6 +7,7 @@ import 'package:hostelites/responsive/responsive_screen.dart';
 import 'package:hostelites/responsive/web_screen.dart';
 import 'package:hostelites/screens/complaint_screen.dart';
 import 'package:hostelites/screens/home_screen.dart';
+import 'package:hostelites/screens/input_complaint.dart';
 import 'package:hostelites/screens/login_screen.dart';
 import 'package:hostelites/screens/register.dart';
 import 'package:hostelites/utils/colors.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       //   webScreenLayout: webScreen(),
       //   mobileScreenLayout: mobileScreen(),
       // ),
-      home: (),
+      home: ComplaintScreen(),
     );
   }
 }
