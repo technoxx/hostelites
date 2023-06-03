@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostelites/utils/colors.dart';
 
 class MyTextFieldInput extends StatelessWidget {
   final TextEditingController control;
@@ -20,7 +21,12 @@ class MyTextFieldInput extends StatelessWidget {
       controller: control,
       decoration: InputDecoration(
         hintText: hinttext,
-        border: const OutlineInputBorder(),
+        focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: mainColor)),
+        disabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: mainColor)),
+        enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: mainColor)),
         filled: true,
       ),
       keyboardType: batao,

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hostelites/firebase_options.dart';
 import 'package:hostelites/responsive/mobile_screen.dart';
 import 'package:hostelites/responsive/responsive_screen.dart';
@@ -32,14 +33,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Hostelites',
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
+        textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
       ),
       // home: const MyResponsiveLayout(
       //   webScreenLayout: webScreen(),
       //   mobileScreenLayout: mobileScreen(),
       // ),
-      home: ComplaintScreen(),
+      home: LoginScreen(),
     );
   }
 }

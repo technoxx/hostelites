@@ -16,6 +16,7 @@ class MyAuthMethods {
       required String password,
       required String username,
       required String room,
+      required String year,
       required BuildContext context}) async {
     try {
       // if (email.isNotEmpty ||

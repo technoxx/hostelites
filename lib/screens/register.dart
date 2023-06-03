@@ -32,8 +32,15 @@ class SignupScreenState extends State<SignupScreen> {
         password: _passcontrol.text,
         username: _usernamecontrol.text,
         room: _roomcontrol.text,
+        year: dropdownvalue,
         context: context);
   }
+
+  String dropdownvalue = '';
+  var items = ['', '1st year', '2nd year', '3rd year', '4th year'];
+
+  String dropdown1value = '';
+  var items1 = ['', 'A', 'B', 'C'];
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +65,62 @@ class SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 24,
               ),
+              //Textfield for year
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Select an item',
+                  border: OutlineInputBorder(),
+                  suffixIcon: DropdownButtonFormField(
+                    value: dropdownvalue,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownvalue = newValue!;
+                      });
+                    },
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
               //Textfield for room
               MyTextFieldInput(
                   isPass: false,
                   hinttext: 'Enter your room no.',
                   control: _roomcontrol,
                   batao: TextInputType.text),
+              const SizedBox(
+                height: 24,
+              ),
+              //Textfield for block
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Enter your Block',
+                  border: OutlineInputBorder(),
+                  suffixIcon: DropdownButtonFormField(
+                    value: dropdown1value,
+                    onChanged: (String? newValue1) {
+                      setState(() {
+                        dropdown1value = newValue1!;
+                      });
+                    },
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items1.map((String items1) {
+                      return DropdownMenuItem(
+                        value: items1,
+                        child: Text(items1),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
               const SizedBox(
                 height: 24,
               ),
@@ -94,7 +151,7 @@ class SignupScreenState extends State<SignupScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: blueColor,
+                    color: mainColor,
                   ),
                   child: const Text('Register'),
                 ),

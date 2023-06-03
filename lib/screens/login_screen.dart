@@ -40,7 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(flex: 2, child: Container()),
-            Text('Logo'),
+
+            Image.asset(
+              'assets/images/abesLogo.png',
+            ),
             const SizedBox(
               height: 64,
             ),
@@ -68,35 +71,34 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Text(
                   'Login',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 40,
                     fontWeight: FontWeight.w700,
-                    color: Color(051094),
+                    color: mainColor,
                   ),
                 ),
                 CircleAvatar(
-                  backgroundColor: Colors.white70,
-                  radius: 25,
+                  backgroundColor: secondaryColor,
+                  radius: 30,
                   child: IconButton(
                     onPressed: myLoginUser,
                     icon: const Icon(
                       Icons.arrow_forward,
                       size: 30,
-                      color: Colors.deepOrange,
+                      color: mainColor,
                     ),
                   ),
                 ),
               ],
             ),
             const SizedBox(
-              height: 12,
+              height: 24,
             ),
-            Flexible(flex: 2, child: Container()),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: const Text("Don't have an account?"),
+                  child: const Text("Don't have an account? "),
                 ),
                 GestureDetector(
                   onTap: () {},
@@ -105,12 +107,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text(
                       'Register',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: mainColor),
                     ),
                   ),
                 )
               ],
             ),
+            Flexible(flex: 2, child: Container()),
           ],
         ),
       )),
