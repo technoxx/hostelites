@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelites/screens/home_screen.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
 import 'package:hostelites/resources/auth_methods.dart';
@@ -36,15 +37,25 @@ class SignupScreenState extends State<SignupScreen> {
         context: context);
   }
 
-  String dropdownvalue = '';
-  var items = ['', '1st year', '2nd year', '3rd year', '4th year'];
+  String dropdownvalue = 'Select your Year';
+  var items = [
+    'Select your Year',
+    '1st year',
+    '2nd year',
+    '3rd year',
+    '4th year'
+  ];
 
-  String dropdown1value = '';
-  var items1 = ['', 'A', 'B', 'C'];
+  String blockvalue = 'Select your Block';
+  var block = ['Select your Block', 'A', 'B', 'C'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Center(
+        child: Text('Sign up'),
+      )),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
@@ -59,7 +70,7 @@ class SignupScreenState extends State<SignupScreen> {
               //Textfield for username
               MyTextFieldInput(
                   isPass: false,
-                  hinttext: 'Enter your username',
+                  hinttext: 'Enter your Username',
                   control: _usernamecontrol,
                   batao: TextInputType.text),
               const SizedBox(
@@ -93,7 +104,7 @@ class SignupScreenState extends State<SignupScreen> {
               //Textfield for room
               MyTextFieldInput(
                   isPass: false,
-                  hinttext: 'Enter your room no.',
+                  hinttext: 'Enter your Room No.',
                   control: _roomcontrol,
                   batao: TextInputType.text),
               const SizedBox(
@@ -102,20 +113,19 @@ class SignupScreenState extends State<SignupScreen> {
               //Textfield for block
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Enter your Block',
                   border: OutlineInputBorder(),
                   suffixIcon: DropdownButtonFormField(
-                    value: dropdown1value,
+                    value: blockvalue,
                     onChanged: (String? newValue1) {
                       setState(() {
-                        dropdown1value = newValue1!;
+                        blockvalue = newValue1!;
                       });
                     },
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    items: items1.map((String items1) {
+                    items: block.map((String block) {
                       return DropdownMenuItem(
-                        value: items1,
-                        child: Text(items1),
+                        value: block,
+                        child: Text(block),
                       );
                     }).toList(),
                   ),
@@ -143,7 +153,13 @@ class SignupScreenState extends State<SignupScreen> {
                 height: 24,
               ),
               InkWell(
-                onTap: mySignUp,
+                onTap: () {
+                  mySignUp();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
                 //for register   button
                 child: Container(
                   width: double.infinity,
@@ -153,7 +169,10 @@ class SignupScreenState extends State<SignupScreen> {
                     borderRadius: BorderRadius.circular(4),
                     color: mainColor,
                   ),
-                  child: const Text('Register'),
+                  child: const Text(
+                    'Register',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],

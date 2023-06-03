@@ -36,6 +36,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
         textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
+        inputDecorationTheme: const InputDecorationTheme(
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color: mainColor)),
+          disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color: mainColor)),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color: mainColor)),
+        ),
       ),
       // home: const MyResponsiveLayout(
       //   webScreenLayout: webScreen(),

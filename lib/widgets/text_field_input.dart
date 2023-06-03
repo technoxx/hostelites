@@ -21,13 +21,6 @@ class MyTextFieldInput extends StatelessWidget {
       controller: control,
       decoration: InputDecoration(
         hintText: hinttext,
-        focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: mainColor)),
-        disabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: mainColor)),
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: mainColor)),
-        filled: true,
       ),
       keyboardType: batao,
       obscureText: isPass,
