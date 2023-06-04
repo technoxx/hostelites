@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelites/screens/feedback_screen.dart';
 import 'package:hostelites/screens/input_complaint.dart';
 import 'package:hostelites/utils/colors.dart';
 
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => InputComplaint()),
+                      MaterialPageRoute(builder: (context) => FeedbackScreen()),
                     );
                   },
                   child: const SizedBox(

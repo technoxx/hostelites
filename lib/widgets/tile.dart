@@ -14,7 +14,7 @@ class MyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(10),
       child: ListTile(
         onLongPress: () {
           Navigator.push(
