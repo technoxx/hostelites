@@ -34,6 +34,7 @@ class SignupScreenState extends State<SignupScreen> {
         password: _passcontrol.text,
         username: _usernamecontrol.text,
         room: _roomcontrol.text,
+        block: blockvalue,
         year: dropdownvalue,
         context: context);
   }
@@ -41,14 +42,14 @@ class SignupScreenState extends State<SignupScreen> {
   String dropdownvalue = 'Select your Year';
   var items = [
     'Select your Year',
-    '1st year',
-    '2nd year',
-    '3rd year',
-    '4th year'
+    '1st Year',
+    '2nd Year',
+    '3rd Year',
+    '4th Year'
   ];
 
   String blockvalue = 'Select your Block';
-  var block = ['Select your Block', 'A', 'B', 'C'];
+  var block = ['Select your Block', 'A-Block', 'B-Block', 'C-Block'];
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,6 @@ class SignupScreenState extends State<SignupScreen> {
               //Textfield for year
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Select an item',
                   border: OutlineInputBorder(),
                   suffixIcon: DropdownButtonFormField(
                     value: dropdownvalue,
@@ -156,10 +156,6 @@ class SignupScreenState extends State<SignupScreen> {
               InkWell(
                 onTap: () {
                   mySignUp();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NavBar()),
-                  );
                 },
                 //for register   button
                 child: Container(

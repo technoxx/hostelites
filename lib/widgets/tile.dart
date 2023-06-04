@@ -1,38 +1,87 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelites/screens/view_complaint.dart';
+import 'package:hostelites/utils/colors.dart';
 
 class MyTile extends StatelessWidget {
-  final String uname;
-  final String year;
-  final String room;
-  final String block;
-  final String comp;
-
+  final Map data;
+  final String date;
+  final DocumentReference ref;
   const MyTile(
-      {Key? key,
-      required this.uname,
-      required this.year,
-      required this.room,
-      required this.block,
-      required this.comp})
+      {Key? key, required this.data, required this.date, required this.ref})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 20),
+    return Padding(
+      padding: const EdgeInsets.all(5),
       child: ListTile(
-        onTap: () {},
+        onLongPress: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ViewComplaint(data, ref, date)));
+        },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        tileColor: Colors.green,
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        tileColor: secondaryColor,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         title: Text(
-          comp,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
+          data['issue'],
+          style: const TextStyle(
+            color: mainColor,
+            fontSize: 20,
+          ),
+          maxLines: 10,
         ),
-        subtitle: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text(uname), Text(room), Text(year), Text(block)]),
+        subtitle: Wrap(spacing: 10.0, children: <Widget>[
+          Chip(
+            labelPadding: EdgeInsets.zero,
+            label: Text(
+              data['username'],
+              style: const TextStyle(
+                color: highlightColor,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Chip(
+            label: Text(
+              data['room'],
+              style: const TextStyle(
+                color: highlightColor,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Chip(
+            label: Text(
+              data['year'],
+              style: const TextStyle(
+                color: highlightColor,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Chip(
+            label: Text(
+              data['block'],
+              style: const TextStyle(
+                color: highlightColor,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Text(
+              date,
+              style: const TextStyle(
+                color: highlightColor,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ]),
       ),
     );
   }

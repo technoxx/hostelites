@@ -11,7 +11,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Hello guys'),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+        title: const Center(child: Text('Feedback')),
+      ),
+      body: Text('Give Feedback'),
     );
   }
 }

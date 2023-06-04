@@ -1,14 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/model/complaint_model.dart';
 import 'package:hostelites/utils/colors.dart';
+import 'package:hostelites/widgets/show_snackbar.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
-import 'package:hostelites/widgets/tile.dart';
-import 'package:hostelites/screens/complaint_screen.dart';
 
 class InputComplaint extends StatefulWidget {
-  const InputComplaint({super.key, required this.onNewComp});
-
-  final Function(Complaint) onNewComp;
+  InputComplaint({super.key});
 
   @override
   State<InputComplaint> createState() => InputComplaintState();
@@ -26,11 +24,17 @@ class InputComplaintState extends State<InputComplaint> {
     _usernamecontrol.dispose();
   }
 
-  String dropdownvalue = 'Year';
-  var items = ['Year', '1st year', '2nd year', '3rd year', '4th year'];
+  String yearvalue = 'Select your Year';
+  var items = [
+    'Select your Year',
+    '1st Year',
+    '2nd Year',
+    '3rd Year',
+    '4th Year'
+  ];
 
-  String dropdown1value = 'Block';
-  var items1 = ['Block', 'A', 'B', 'C'];
+  String blockvalue = 'Select your Block';
+  var block = ['Select your Block', 'A-Block', 'B-Block', 'C-Block'];
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +56,7 @@ class InputComplaintState extends State<InputComplaint> {
               //Textfield for username
               MyTextFieldInput(
                   isPass: false,
-                  hinttext: 'Enter your username',
+                  hinttext: 'Enter your Username',
                   control: _usernamecontrol,
                   batao: TextInputType.text),
               const SizedBox(
@@ -61,13 +65,12 @@ class InputComplaintState extends State<InputComplaint> {
               //Textfield for year
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Select an item',
                   border: OutlineInputBorder(),
                   suffixIcon: DropdownButtonFormField(
-                    value: dropdownvalue,
+                    value: yearvalue,
                     onChanged: (String? newValue) {
                       setState(() {
-                        dropdownvalue = newValue!;
+                        yearvalue = newValue!;
                       });
                     },
                     icon: const Icon(Icons.keyboard_arrow_down),
@@ -86,7 +89,7 @@ class InputComplaintState extends State<InputComplaint> {
               //Textfield for room no.
               MyTextFieldInput(
                   isPass: false,
-                  hinttext: 'Enter your room no.',
+                  hinttext: 'Enter your Room No.',
                   control: _roomcontrol,
                   batao: TextInputType.text),
               const SizedBox(
@@ -95,20 +98,19 @@ class InputComplaintState extends State<InputComplaint> {
               //Textfield for block
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Enter your Block',
                   border: OutlineInputBorder(),
                   suffixIcon: DropdownButtonFormField(
-                    value: dropdown1value,
+                    value: blockvalue,
                     onChanged: (String? newValue1) {
                       setState(() {
-                        dropdown1value = newValue1!;
+                        blockvalue = newValue1!;
                       });
                     },
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    items: items1.map((String items1) {
+                    items: block.map((String block) {
                       return DropdownMenuItem(
-                        value: items1,
-                        child: Text(items1),
+                        value: block,
+                        child: Text(block),
                       );
                     }).toList(),
                   ),
@@ -130,19 +132,15 @@ class InputComplaintState extends State<InputComplaint> {
                 onTap: () {
                   if (_usernamecontrol.text.isEmpty ||
                       _roomcontrol.text.isEmpty ||
-                      dropdownvalue.isEmpty ||
-                      dropdown1value.isEmpty ||
-                      _compcontrol.text.isEmpty) {
+                      _compcontrol.text.isEmpty ||
+                      yearvalue.isEmpty ||
+                      blockvalue.isEmpty) {
                     return;
+                  } else {
+                    add();
+                    myShowSnackBar(context,
+                        'Recorded! You can view it in the Complaints Page');
                   }
-                  final com = Complaint(
-                      username: _usernamecontrol.text,
-                      year: dropdownvalue,
-                      room: _roomcontrol.text,
-                      block: dropdown1value,
-                      compl: _compcontrol.text);
-                  widget.onNewComp(com);
-                  Navigator.of(context).pop();
                 },
                 //for done button
                 child: Container(
@@ -153,7 +151,10 @@ class InputComplaintState extends State<InputComplaint> {
                     borderRadius: BorderRadius.circular(4),
                     color: mainColor,
                   ),
-                  child: const Text('Done'),
+                  child: const Text(
+                    'Done',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
               ),
             ],
@@ -161,5 +162,25 @@ class InputComplaintState extends State<InputComplaint> {
         ),
       )),
     );
+  }
+
+  void add() async {
+    //save to database
+    CollectionReference ref = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('complaints');
+
+    var data = {
+      'username': _usernamecontrol.text,
+      'room': _roomcontrol.text,
+      'block': blockvalue,
+      'year': yearvalue,
+      'issue': _compcontrol.text,
+      'created': DateTime.now(),
+    };
+
+    ref.add(data);
+    Navigator.pop(context);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ import 'package:hostelites/screens/login_screen.dart';
 import 'package:hostelites/screens/register.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/widgets/tile.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() async {
   //initialize flutter widgets
@@ -50,7 +52,19 @@ class MyApp extends StatelessWidget {
       //   webScreenLayout: webScreen(),
       //   mobileScreenLayout: mobileScreen(),
       // ),
-      home: LoginScreen(),
+      home: AnimatedSplashScreen(
+        splash: Center(
+            child: Container(
+          child: Image.asset(
+            'assets/images/appfinalLogo.png',
+            height: 150,
+          ),
+        )),
+        nextScreen: LoginScreen(),
+        duration: 1500,
+        splashTransition: SplashTransition.slideTransition,
+        backgroundColor: secondaryColor,
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hostelites/screens/navbar.dart';
 
 import '../widgets/show_snackbar.dart';
 
@@ -8,7 +9,8 @@ class MyAuthMethods {
   //creating an instance
   final FirebaseAuth _auth;
   MyAuthMethods(this._auth);
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  //final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   //sign up user
   Future<void> mySignupUser(
@@ -17,28 +19,49 @@ class MyAuthMethods {
       required String username,
       required String room,
       required String year,
+      required String block,
       required BuildContext context}) async {
     try {
-      // if (email.isNotEmpty ||
-      //     password.isNotEmpty ||
-      //     username.isNotEmpty ||
-      //     room.isNotEmpty) {
-      //   //register user
-      //   UserCredential cred =
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      if (email.isNotEmpty ||
+          password.isNotEmpty ||
+          username.isNotEmpty ||
+          room.isNotEmpty ||
+          block.isNotEmpty) {
+        //register user
+        final UserCredential cred = await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
 
-      await mySendEmailVerification(context);
+        final User? user = cred.user;
 
-      //add user to the database
-      //create a collection named 'users' and then make document 'uid' and  set them
-      // await _firestore.collection('users').doc(cred.user!.uid).set({
-      //   'username': username,
-      //   'uid': cred.user!.uid,
-      //   'email': email,
-      //   'room': room,
-      // });
-      // }
+        var userData = {
+          'username': username,
+          'uid': user!.uid,
+          'email': email,
+          'room': room,
+          'block': block,
+          'year': year,
+        };
+
+        users.doc(user.uid).get().then((doc) {
+          if (doc.exists) {
+            //old user
+            doc.reference.update(userData);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NavBar()),
+            );
+          } else {
+            //new user
+            users.doc(user.uid).set(userData);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NavBar()),
+            );
+          }
+        });
+
+        await mySendEmailVerification(context);
+      }
     } on FirebaseAuthException catch (e) {
       myShowSnackBar(context, e.message!);
     }

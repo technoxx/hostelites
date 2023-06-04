@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/model/complaint_model.dart';
 import 'package:hostelites/screens/input_complaint.dart';
 import 'package:hostelites/widgets/tile.dart';
+import 'package:intl/intl.dart';
 
 class ComplaintScreen extends StatefulWidget {
   const ComplaintScreen({super.key});
@@ -11,52 +13,43 @@ class ComplaintScreen extends StatefulWidget {
 }
 
 class _ComplaintScreenState extends State<ComplaintScreen> {
-  List<Complaint> complist = List.empty(growable: true);
+  CollectionReference ref = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection('complaints');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(child: Text('Complaints')),
+        titleSpacing: 0,
+        title: const Center(child: Text('Complaints')),
       ),
-      body: ListView.builder(
-        itemCount: complist.length,
-        itemBuilder: (context, index) {
-          return MyTile(
-              uname: complist[index].username,
-              year: complist[index].year,
-              room: complist[index].room,
-              block: complist[index].block,
-              comp: complist[index].compl);
+      body: FutureBuilder<QuerySnapshot>(
+        future: ref.get(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                Map data = snapshot.data!.docs[index].data() as Map;
+                DateTime mydateTime = data['created'].toDate();
+                String formattedTime =
+                    DateFormat.yMMMd().add_jm().format(mydateTime);
+                return MyTile(
+                  data: data,
+                  date: formattedTime,
+                  ref: snapshot.data!.docs[index].reference,
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: Text('Loading...'),
+            );
+          }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Card(
-          child: InkWell(
-            splashColor: Colors.blue,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => InputComplaint(
-                          onNewComp: onNewComp,
-                        )),
-              );
-            },
-            child: const SizedBox(
-              width: double.infinity,
-              height: 100,
-              child: Text('Report service issue'),
-            ),
-          ),
-        ),
-      ),
     );
-  }
-
-  void onNewComp(Complaint comp) {
-    complist.add(comp);
-    setState(() {});
   }
 }
