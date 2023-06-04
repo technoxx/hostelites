@@ -12,17 +12,64 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: mainColor,
+              ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: secondaryColor,
+                    radius: 40,
+                    child: Icon(
+                      CupertinoIcons.person,
+                      size: 40,
+                    ),
+                  ),
+                  Text(
+                    '   Your Profile',
+                    style: TextStyle(
+                      color: secondaryColor,
+                      fontSize: 24,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(CupertinoIcons.person),
+              title: Text(
+                'Edit Profile',
+              ),
+            ),
+            ListTile(
+              leading: Icon(CupertinoIcons.settings_solid),
+              title: Text('Settings'),
+            ),
+            ListTile(
+              leading: Icon(CupertinoIcons.arrow_down_right),
+              title: Text('Sign Out'),
+            ),
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
-                  Text(
+                  const Text(
                     "Welcome Hostellers!",
                     style: TextStyle(
                       fontSize: 35,
@@ -31,10 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Flexible(fit: FlexFit.tight, child: SizedBox()),
-                  Icon(
-                    CupertinoIcons.person_circle_fill,
-                    size: 40,
-                    color: secondaryColor,
+                  IconButton(
+                    icon: Icon(
+                      CupertinoIcons.person_circle_fill,
+                      size: 40,
+                      color: secondaryColor,
+                    ),
+                    onPressed: () => _key.currentState!.openEndDrawer(),
                   ),
                 ],
               ),

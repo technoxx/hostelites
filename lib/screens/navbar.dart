@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hostelites/screens/complaint_screen.dart';
 import 'package:hostelites/screens/feedback_screen.dart';
 import 'package:hostelites/screens/home_screen.dart';
+import 'package:hostelites/screens/mess_screen.dart';
 import 'package:hostelites/utils/colors.dart';
 
 class NavBar extends StatefulWidget {
@@ -14,7 +15,12 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int myIndex = 0;
-  final screenList = [HomeScreen(), ComplaintScreen(), FeedbackScreen()];
+  final screenList = [
+    HomeScreen(),
+    ComplaintScreen(),
+    MessMenu(),
+    FeedbackScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +47,13 @@ class _NavBarState extends State<NavBar> {
                 size: 30,
               ),
               label: 'Complaints',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.book,
+                size: 30,
+              ),
+              label: 'Mess menu',
             ),
             BottomNavigationBarItem(
               icon: Icon(
