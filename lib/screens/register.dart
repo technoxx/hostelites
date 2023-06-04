@@ -1,10 +1,14 @@
+import 'dart:typed_data';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelites/screens/home_screen.dart';
 import 'package:hostelites/screens/navbar.dart';
 import 'package:hostelites/utils/colors.dart';
+import 'package:hostelites/utils/utils.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
 import 'package:hostelites/resources/auth_methods.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -27,6 +31,8 @@ class SignupScreenState extends State<SignupScreen> {
     _roomcontrol.dispose();
     _usernamecontrol.dispose();
   }
+
+  Uint8List? _image;
 
   void mySignUp() async {
     MyAuthMethods(FirebaseAuth.instance).mySignupUser(
@@ -51,6 +57,14 @@ class SignupScreenState extends State<SignupScreen> {
   String blockvalue = 'Select your Block';
   var block = ['Select your Block', 'A-Block', 'B-Block', 'C-Block'];
 
+  selectImage() async {
+    Uint8List im = await pickImage(ImageSource.gallery);
+    // set state because we need to display the image we selected on the circle avatar
+    setState(() {
+      _image = im;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +80,30 @@ class SignupScreenState extends State<SignupScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Stack(
+                children: [
+                  _image != null
+                      ? CircleAvatar(
+                          radius: 64,
+                          backgroundImage: MemoryImage(_image!),
+                          backgroundColor: Colors.red,
+                        )
+                      : const CircleAvatar(
+                          radius: 64,
+                          backgroundImage: NetworkImage(
+                              'https://i.stack.imgur.com/l60Hf.png'),
+                          backgroundColor: Colors.red,
+                        ),
+                  Positioned(
+                    bottom: -10,
+                    left: 80,
+                    child: IconButton(
+                      onPressed: selectImage,
+                      icon: const Icon(Icons.add_a_photo),
+                    ),
+                  )
+                ],
+              ),
               const SizedBox(
                 height: 24,
               ),

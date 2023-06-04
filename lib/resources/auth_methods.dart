@@ -1,6 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hostelites/resources/storage_methods.dart';
 import 'package:hostelites/screens/navbar.dart';
 
 import '../widgets/show_snackbar.dart';
