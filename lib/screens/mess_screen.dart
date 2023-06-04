@@ -15,6 +15,10 @@ class _MessMenuState extends State<MessMenu> {
         titleSpacing: 0,
         title: const Center(child: Text('Mess Menu')),
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Image.asset('assets/images/Document 16_1.jpg'),
+      ),
     );
   }
 }
