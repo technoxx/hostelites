@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelites/drawer/edit_profile.dart';
+import 'package:hostelites/drawer/settings.dart';
 import 'package:hostelites/screens/feedback_screen.dart';
 import 'package:hostelites/screens/input_complaint.dart';
 import 'package:hostelites/utils/colors.dart';
@@ -20,8 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
       endDrawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
+          children: <Widget>[
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: mainColor,
               ),
@@ -45,15 +47,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            ListTile(
-              leading: Icon(CupertinoIcons.person),
-              title: Text(
-                'Edit Profile',
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditProfile()),
+                );
+              },
+              child: ListTile(
+                leading: Icon(CupertinoIcons.person),
+                title: Text(
+                  'Edit Profile',
+                ),
               ),
             ),
-            ListTile(
-              leading: Icon(CupertinoIcons.settings_solid),
-              title: Text('Settings'),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MySettings()),
+                );
+              },
+              child: ListTile(
+                leading: Icon(CupertinoIcons.settings_solid),
+                title: Text('Settings'),
+              ),
             ),
             ListTile(
               leading: Icon(CupertinoIcons.arrow_down_right),
