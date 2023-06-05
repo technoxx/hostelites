@@ -24,12 +24,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               color: secondaryColor,
               child: InkWell(
                 splashColor: mainColor.withAlpha(30),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FeedbackScreen()),
-                  );
-                },
+                onTap: () {},
                 child: const SizedBox(
                   width: double.infinity,
                   height: 60,
@@ -54,12 +49,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               color: secondaryColor,
               child: InkWell(
                 splashColor: mainColor.withAlpha(30),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FeedbackScreen()),
-                  );
-                },
+                onTap: () {},
                 child: const SizedBox(
                   width: double.infinity,
                   height: 60,
@@ -84,12 +74,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
               color: secondaryColor,
               child: InkWell(
                 splashColor: mainColor.withAlpha(30),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FeedbackScreen()),
-                  );
-                },
+                onTap: () {},
                 child: const SizedBox(
                   width: double.infinity,
                   height: 60,
