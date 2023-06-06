@@ -4,6 +4,7 @@ import 'package:hostelites/screens/complaint_screen.dart';
 import 'package:hostelites/screens/feedback_screen.dart';
 import 'package:hostelites/screens/home_screen.dart';
 import 'package:hostelites/screens/mess_screen.dart';
+import 'package:hostelites/screens/room.dart';
 import 'package:hostelites/utils/colors.dart';
 
 class NavBar extends StatefulWidget {
@@ -17,6 +18,7 @@ class _NavBarState extends State<NavBar> {
   int myIndex = 0;
   final screenList = [
     HomeScreen(),
+    AvailableRooms(),
     ComplaintScreen(),
     MessMenu(),
     FeedbackScreen()
@@ -40,6 +42,13 @@ class _NavBarState extends State<NavBar> {
                 size: 30,
               ),
               label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.bed_double,
+                size: 30,
+              ),
+              label: 'Rooms',
             ),
             BottomNavigationBarItem(
               icon: Icon(

@@ -16,7 +16,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             Text('Edit Profile'),
             Flexible(fit: FlexFit.tight, child: SizedBox()),
@@ -65,8 +65,8 @@ class _EditProfileState extends State<EditProfile> {
               //Textfield for username
               Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(10),
-                  child: Text(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
                     'Username',
                     style: TextStyle(fontSize: 17),
                   )),
@@ -75,8 +75,8 @@ class _EditProfileState extends State<EditProfile> {
               //Textfield for email
               Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(10),
-                  child: Text(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
                     'Email Id',
                     style: TextStyle(fontSize: 17),
                   )),
@@ -85,8 +85,8 @@ class _EditProfileState extends State<EditProfile> {
               //Textfield for year
               Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(10),
-                  child: Text(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
                     'Year',
                     style: TextStyle(fontSize: 17),
                   )),
@@ -94,8 +94,8 @@ class _EditProfileState extends State<EditProfile> {
               //Textfield for block
               Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(10),
-                  child: Text(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
                     'Block',
                     style: TextStyle(fontSize: 17),
                   )),
@@ -103,8 +103,8 @@ class _EditProfileState extends State<EditProfile> {
               //Textfield for room no
               Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.all(10),
-                  child: Text(
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
                     'Room No.',
                     style: TextStyle(fontSize: 17),
                   )),
