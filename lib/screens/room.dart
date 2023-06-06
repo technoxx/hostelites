@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hostelites/available_rooms.dart/a.dart';
+import 'package:hostelites/available_rooms.dart/b.dart';
+import 'package:hostelites/available_rooms.dart/c.dart';
 import 'package:hostelites/utils/colors.dart';
 
 class AvailableRooms extends StatelessWidget {
@@ -9,7 +12,7 @@ class AvailableRooms extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(
+        title: const Center(
           child: Text('Available Rooms'),
         ),
       ),
@@ -22,7 +25,12 @@ class AvailableRooms extends StatelessWidget {
               color: secondaryColor,
               child: InkWell(
                 splashColor: mainColor.withAlpha(30),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ABlock()),
+                  );
+                },
                 child: const SizedBox(
                   width: double.infinity,
                   height: 60,
@@ -47,7 +55,12 @@ class AvailableRooms extends StatelessWidget {
               color: secondaryColor,
               child: InkWell(
                 splashColor: mainColor.withAlpha(30),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BBlock()),
+                  );
+                },
                 child: const SizedBox(
                   width: double.infinity,
                   height: 60,
@@ -72,7 +85,12 @@ class AvailableRooms extends StatelessWidget {
               color: secondaryColor,
               child: InkWell(
                 splashColor: mainColor.withAlpha(30),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CBlock()),
+                  );
+                },
                 child: const SizedBox(
                   width: double.infinity,
                   height: 60,
