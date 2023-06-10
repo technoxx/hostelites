@@ -27,7 +27,16 @@ class _ViewComplaintState extends State<ViewComplaint> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit/Delete'),
+        title: Row(
+          children: [
+            Text('Edit'),
+            Flexible(fit: FlexFit.tight, child: SizedBox()),
+            InkWell(
+              onTap: () {},
+              child: Text('Save'),
+            )
+          ],
+        ),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -40,43 +49,26 @@ class _ViewComplaintState extends State<ViewComplaint> {
               const SizedBox(
                 height: 24,
               ),
-              //Textfield for complaint
+
+              //Textfield for username
+              Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                    'Complaint',
+                    style: TextStyle(fontSize: 17),
+                  )),
               TextField(
-                decoration: InputDecoration(hintText: widget.data['issue']),
+                controller: TextEditingController(text: widget.data['issue']),
               ),
+
               const SizedBox(
                 height: 24,
-              ),
-              InkWell(
-                onTap: () {
-                  del();
-                  myShowSnackBar(context, 'Deleted Successfully!');
-                },
-                //for delete button
-                child: Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    color: mainColor,
-                  ),
-                  child: const Text(
-                    'Delete',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
               ),
             ],
           ),
         ),
       )),
     );
-  }
-
-  void del() async {
-    //delete from database
-    await widget.ref.delete();
-    Navigator.pop(context);
   }
 }

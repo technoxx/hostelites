@@ -36,6 +36,7 @@ dependencies:
   firebase_storage: ^11.2.2
   flutter:
     sdk: flutter
+  flutter_slidable: ^3.0.0
   google_fonts: ^4.0.4
   http: ^0.13.0
   image_picker: ^0.8.7+5
