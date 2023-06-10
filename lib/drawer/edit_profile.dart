@@ -1,10 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hostelites/utils/colors.dart';
+import 'package:hostelites/widgets/show_snackbar.dart';
+import 'package:hostelites/widgets/userdata.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({super.key});
+  final String uid;
+  const EditProfile({
+    Key? key,
+    required this.uid,
+  }) : super(key: key);
 
   @override
   State<EditProfile> createState() => _EditProfileState();
@@ -12,6 +22,14 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   Uint8List? _image;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData(widget.uid, context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,13 +59,12 @@ class _EditProfileState extends State<EditProfile> {
                       ? CircleAvatar(
                           radius: 64,
                           backgroundImage: MemoryImage(_image!),
-                          backgroundColor: Colors.red,
+                          backgroundColor: secondaryColor,
                         )
                       : const CircleAvatar(
                           radius: 64,
-                          backgroundImage: NetworkImage(
-                              'https://i.stack.imgur.com/l60Hf.png'),
-                          backgroundColor: Colors.red,
+                          child: Icon(CupertinoIcons.person),
+                          backgroundColor: secondaryColor,
                         ),
                   Positioned(
                     bottom: -10,
@@ -60,8 +77,9 @@ class _EditProfileState extends State<EditProfile> {
                 ],
               ),
               const SizedBox(
-                height: 24,
+                height: 20,
               ),
+
               //Textfield for username
               Container(
                   alignment: Alignment.centerLeft,
@@ -70,7 +88,9 @@ class _EditProfileState extends State<EditProfile> {
                     'Username',
                     style: TextStyle(fontSize: 17),
                   )),
-              TextField(),
+              TextField(
+                controller: TextEditingController(text: userData['username']),
+              ),
 
               //Textfield for email
               Container(
@@ -80,7 +100,9 @@ class _EditProfileState extends State<EditProfile> {
                     'Email Id',
                     style: TextStyle(fontSize: 17),
                   )),
-              TextField(),
+              TextField(
+                controller: TextEditingController(text: userData['email']),
+              ),
 
               //Textfield for year
               Container(
@@ -90,7 +112,10 @@ class _EditProfileState extends State<EditProfile> {
                     'Year',
                     style: TextStyle(fontSize: 17),
                   )),
-              TextField(),
+              TextField(
+                controller: TextEditingController(text: userData['year']),
+              ),
+
               //Textfield for block
               Container(
                   alignment: Alignment.centerLeft,
@@ -99,7 +124,10 @@ class _EditProfileState extends State<EditProfile> {
                     'Block',
                     style: TextStyle(fontSize: 17),
                   )),
-              TextField(),
+              TextField(
+                controller: TextEditingController(text: userData['block']),
+              ),
+
               //Textfield for room no
               Container(
                   alignment: Alignment.centerLeft,
@@ -108,9 +136,8 @@ class _EditProfileState extends State<EditProfile> {
                     'Room No.',
                     style: TextStyle(fontSize: 17),
                   )),
-              TextField(),
-              const SizedBox(
-                height: 24,
+              TextField(
+                controller: TextEditingController(text: userData['room']),
               ),
             ],
           ),

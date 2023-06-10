@@ -1,15 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelites/screens/view_complaint.dart';
 import 'package:hostelites/utils/colors.dart';
+import 'package:hostelites/widgets/userdata.dart';
 
-class MyTile extends StatelessWidget {
+class MyTile extends StatefulWidget {
   final Map data;
   final String date;
   final DocumentReference ref;
   const MyTile(
       {Key? key, required this.data, required this.date, required this.ref})
       : super(key: key);
+
+  @override
+  State<MyTile> createState() => _MyTileState();
+}
+
+class _MyTileState extends State<MyTile> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData(FirebaseAuth.instance.currentUser!.uid, context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +34,14 @@ class MyTile extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ViewComplaint(data, ref, date)));
+                  builder: (context) =>
+                      ViewComplaint(widget.data, widget.ref, widget.date)));
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         tileColor: secondaryColor,
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         title: Text(
-          data['issue'],
+          widget.data['issue'],
           style: const TextStyle(
             color: mainColor,
             fontSize: 20,
@@ -37,7 +52,7 @@ class MyTile extends StatelessWidget {
           Chip(
             labelPadding: EdgeInsets.zero,
             label: Text(
-              data['username'],
+              userData['username'],
               style: const TextStyle(
                 color: highlightColor,
                 fontSize: 15,
@@ -46,7 +61,7 @@ class MyTile extends StatelessWidget {
           ),
           Chip(
             label: Text(
-              data['room'],
+              userData['room'],
               style: const TextStyle(
                 color: highlightColor,
                 fontSize: 15,
@@ -55,7 +70,7 @@ class MyTile extends StatelessWidget {
           ),
           Chip(
             label: Text(
-              data['year'],
+              userData['year'],
               style: const TextStyle(
                 color: highlightColor,
                 fontSize: 15,
@@ -64,7 +79,7 @@ class MyTile extends StatelessWidget {
           ),
           Chip(
             label: Text(
-              data['block'],
+              userData['block'],
               style: const TextStyle(
                 color: highlightColor,
                 fontSize: 15,
@@ -74,7 +89,7 @@ class MyTile extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Text(
-              date,
+              widget.date,
               style: const TextStyle(
                 color: highlightColor,
                 fontSize: 18,

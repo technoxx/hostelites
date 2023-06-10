@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelites/drawer/edit_profile.dart';
@@ -51,10 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => EditProfile()),
+                  MaterialPageRoute(
+                      builder: (context) => EditProfile(
+                            uid: FirebaseAuth.instance.currentUser!.uid,
+                          )),
                 );
               },
-              child: ListTile(
+              child: const ListTile(
                 leading: Icon(CupertinoIcons.person),
                 title: Text(
                   'Edit Profile',

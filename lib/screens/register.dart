@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hostelites/screens/home_screen.dart';
 import 'package:hostelites/screens/navbar.dart';
@@ -42,6 +43,7 @@ class SignupScreenState extends State<SignupScreen> {
         room: _roomcontrol.text,
         block: blockvalue,
         year: dropdownvalue,
+        //file: _image!,
         context: context);
   }
 
@@ -57,7 +59,7 @@ class SignupScreenState extends State<SignupScreen> {
   String blockvalue = 'Select your Block';
   var block = ['Select your Block', 'A-Block', 'B-Block', 'C-Block'];
 
-  selectImage() async {
+  void selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
     // set state because we need to display the image we selected on the circle avatar
     setState(() {
@@ -86,13 +88,12 @@ class SignupScreenState extends State<SignupScreen> {
                       ? CircleAvatar(
                           radius: 64,
                           backgroundImage: MemoryImage(_image!),
-                          backgroundColor: Colors.red,
+                          backgroundColor: secondaryColor,
                         )
                       : const CircleAvatar(
                           radius: 64,
-                          backgroundImage: NetworkImage(
-                              'https://i.stack.imgur.com/l60Hf.png'),
-                          backgroundColor: Colors.red,
+                          child: Icon(CupertinoIcons.person),
+                          backgroundColor: secondaryColor,
                         ),
                   Positioned(
                     bottom: -10,

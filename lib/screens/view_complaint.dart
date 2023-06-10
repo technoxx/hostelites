@@ -17,27 +17,11 @@ class ViewComplaint extends StatefulWidget {
 
 class _ViewComplaintState extends State<ViewComplaint> {
   final TextEditingController _compcontrol = TextEditingController();
-  final TextEditingController _roomcontrol = TextEditingController();
-  final TextEditingController _usernamecontrol = TextEditingController();
   @override
   void dispose() {
     super.dispose();
     _compcontrol.dispose();
-    _roomcontrol.dispose();
-    _usernamecontrol.dispose();
   }
-
-  String yearvalue = 'Select your Year';
-  var items = [
-    'Select your Year',
-    '1st Year',
-    '2nd Year',
-    '3rd Year',
-    '4th Year'
-  ];
-
-  String blockvalue = 'Select your Block';
-  var block = ['Select your Block', 'A-Block', 'B-Block', 'C-Block'];
 
   @override
   Widget build(BuildContext context) {
@@ -53,36 +37,6 @@ class _ViewComplaintState extends State<ViewComplaint> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 24,
-              ),
-              //Textfield for username
-              TextField(
-                decoration: InputDecoration(hintText: widget.data['username']),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              //Textfield for year
-              TextField(
-                decoration: InputDecoration(
-                  hintText: widget.data['year'],
-                ),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              //Textfield for room no.
-              TextField(
-                decoration: InputDecoration(hintText: widget.data['room']),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              //Textfield for block
-              TextField(
-                decoration: InputDecoration(hintText: widget.data['block']),
-              ),
               const SizedBox(
                 height: 24,
               ),

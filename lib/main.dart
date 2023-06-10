@@ -39,12 +39,15 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: mobileBackgroundColor,
         appBarTheme: AppBarTheme(backgroundColor: mainColor),
         textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
-        inputDecorationTheme: const InputDecorationTheme(
+        inputDecorationTheme: InputDecorationTheme(
           focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(width: 2, color: mainColor)),
           disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(width: 2, color: mainColor)),
           enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(width: 2, color: mainColor)),
         ),
       ),
