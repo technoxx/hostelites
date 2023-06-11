@@ -44,22 +44,17 @@ class _MyTileState extends State<MyTile> {
             icon: CupertinoIcons.pencil,
             backgroundColor: highlightColor,
             onPressed: (context) => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
+              Navigator.of(context)
+                  .push(MaterialPageRoute(
                       builder: (context) =>
-                          ViewComplaint(widget.data, widget.ref, widget.date))),
+                          ViewComplaint(widget.data, widget.ref, widget.date)))
+                  .then((_) {
+                setState(() {});
+              }),
             },
           ),
         ]),
         child: ListTile(
-          onLongPress: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ViewComplaint(widget.data, widget.ref, widget.date)));
-          },
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           tileColor: secondaryColor,
