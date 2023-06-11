@@ -6,6 +6,7 @@ import 'package:hostelites/drawer/settings.dart';
 import 'package:hostelites/screens/feedback_screen.dart';
 import 'package:hostelites/screens/input_complaint.dart';
 import 'package:hostelites/utils/colors.dart';
+import 'package:hostelites/widgets/userdata.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,6 +17,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData(FirebaseAuth.instance.currentUser!.uid, context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,25 +33,28 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
+            DrawerHeader(
+              decoration: const BoxDecoration(
                 color: mainColor,
               ),
               child: Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundColor: secondaryColor,
-                    radius: 40,
+                    radius: 25,
                     child: Icon(
                       CupertinoIcons.person,
                       size: 40,
                     ),
                   ),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Text(
-                    '   Your Profile',
-                    style: TextStyle(
+                    userData['email'],
+                    style: const TextStyle(
                       color: secondaryColor,
-                      fontSize: 24,
+                      fontSize: 15,
                     ),
                   ),
                 ],
@@ -72,12 +84,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(builder: (context) => MySettings()),
                 );
               },
-              child: ListTile(
+              child: const ListTile(
                 leading: Icon(CupertinoIcons.settings_solid),
                 title: Text('Settings'),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(CupertinoIcons.arrow_down_right),
               title: Text('Sign Out'),
             ),
@@ -99,9 +111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: highlightColor,
                     ),
                   ),
-                  Flexible(fit: FlexFit.tight, child: SizedBox()),
+                  const Flexible(fit: FlexFit.tight, child: SizedBox()),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       CupertinoIcons.person_circle_fill,
                       size: 40,
                       color: secondaryColor,

@@ -45,6 +45,7 @@ class MyAuthMethods {
         var userData = {
           'username': username,
           'uid': user!.uid,
+          'password': password,
           'email': email,
           'room': room,
           'block': block,

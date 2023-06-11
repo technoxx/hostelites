@@ -2,6 +2,7 @@
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,18 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  final TextEditingController _emailcontrol = TextEditingController();
+  final TextEditingController _passcontrol = TextEditingController();
+  final TextEditingController _roomcontrol = TextEditingController();
+  final TextEditingController _usernamecontrol = TextEditingController();
+  final TextEditingController _yearcontrol = TextEditingController();
+  final TextEditingController _blockcontrol = TextEditingController();
+
   Uint8List? _image;
+
+  DocumentReference ref = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid);
 
   @override
   void initState() {
@@ -34,11 +46,23 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           children: [
             Text('Edit Profile'),
             Flexible(fit: FlexFit.tight, child: SizedBox()),
-            Text('Save'),
+            InkWell(
+              onTap: () async {
+                await ref.update({
+                  'username': _usernamecontrol.text.trim(),
+                  'password': _passcontrol.text.trim(),
+                  'email': _emailcontrol.text.trim(),
+                  'room': _roomcontrol.text.trim(),
+                  'block': _blockcontrol.text.trim(),
+                  'year': _yearcontrol.text.trim(),
+                }).then((value) => Navigator.of(context).pop());
+              },
+              child: Text('Save'),
+            ),
           ],
         ),
       ),
@@ -89,7 +113,7 @@ class _EditProfileState extends State<EditProfile> {
                     style: TextStyle(fontSize: 17),
                   )),
               TextField(
-                controller: TextEditingController(text: userData['username']),
+                controller: _usernamecontrol..text = "${userData['username']}",
               ),
 
               //Textfield for email
@@ -101,7 +125,7 @@ class _EditProfileState extends State<EditProfile> {
                     style: TextStyle(fontSize: 17),
                   )),
               TextField(
-                controller: TextEditingController(text: userData['email']),
+                controller: _emailcontrol..text = "${userData['email']}",
               ),
 
               //Textfield for year
@@ -113,7 +137,7 @@ class _EditProfileState extends State<EditProfile> {
                     style: TextStyle(fontSize: 17),
                   )),
               TextField(
-                controller: TextEditingController(text: userData['year']),
+                controller: _yearcontrol..text = "${userData['year']}",
               ),
 
               //Textfield for block
@@ -125,7 +149,7 @@ class _EditProfileState extends State<EditProfile> {
                     style: TextStyle(fontSize: 17),
                   )),
               TextField(
-                controller: TextEditingController(text: userData['block']),
+                controller: _blockcontrol..text = "${userData['block']}",
               ),
 
               //Textfield for room no
@@ -137,7 +161,19 @@ class _EditProfileState extends State<EditProfile> {
                     style: TextStyle(fontSize: 17),
                   )),
               TextField(
-                controller: TextEditingController(text: userData['room']),
+                controller: _roomcontrol..text = "${userData['room']}",
+              ),
+
+              //Textfield for password
+              Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                    'Password',
+                    style: TextStyle(fontSize: 17),
+                  )),
+              TextField(
+                controller: _passcontrol..text = "${userData['password']}",
               ),
             ],
           ),
