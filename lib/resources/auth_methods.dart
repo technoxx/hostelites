@@ -23,24 +23,23 @@ class MyAuthMethods {
       required String room,
       required String year,
       required String block,
-      //required Uint8List file,
+      required Uint8List file,
       required BuildContext context}) async {
     try {
       if (email.isNotEmpty ||
-              password.isNotEmpty ||
-              username.isNotEmpty ||
-              room.isNotEmpty ||
-              block.isNotEmpty
-          //file != null
-          ) {
+          password.isNotEmpty ||
+          username.isNotEmpty ||
+          room.isNotEmpty ||
+          block.isNotEmpty ||
+          file != null) {
         //register user
         final UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
 
         final User? user = cred.user;
 
-        //String photourl =
-        //  await StorageMethods().myUploadImageToStorage('profilePics', file);
+        String photourl =
+            await StorageMethods().myUploadImageToStorage('profilePic', file);
 
         var userData = {
           'username': username,
@@ -50,7 +49,7 @@ class MyAuthMethods {
           'room': room,
           'block': block,
           'year': year,
-          //'photourl': photourl,
+          'photourl': photourl,
         };
 
         users.doc(user.uid).get().then((doc) {

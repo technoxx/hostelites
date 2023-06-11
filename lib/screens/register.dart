@@ -3,8 +3,6 @@ import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/screens/home_screen.dart';
-import 'package:hostelites/screens/navbar.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/utils/utils.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
@@ -43,7 +41,7 @@ class SignupScreenState extends State<SignupScreen> {
         room: _roomcontrol.text,
         block: blockvalue,
         year: dropdownvalue,
-        //file: _image!,
+        file: _image!,
         context: context);
   }
 
@@ -71,7 +69,7 @@ class SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Center(
+          title: const Center(
         child: Text('Sign up'),
       )),
       body: SafeArea(
@@ -92,8 +90,9 @@ class SignupScreenState extends State<SignupScreen> {
                         )
                       : const CircleAvatar(
                           radius: 64,
-                          child: Icon(CupertinoIcons.person),
                           backgroundColor: secondaryColor,
+                          backgroundImage:
+                              AssetImage("assets/images/userpic.png"),
                         ),
                   Positioned(
                     bottom: -10,
@@ -120,7 +119,7 @@ class SignupScreenState extends State<SignupScreen> {
               //Textfield for year
               TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   suffixIcon: DropdownButtonFormField(
                     value: dropdownvalue,
                     onChanged: (String? newValue) {
@@ -153,7 +152,7 @@ class SignupScreenState extends State<SignupScreen> {
               //Textfield for block
               TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   suffixIcon: DropdownButtonFormField(
                     value: blockvalue,
                     onChanged: (String? newValue1) {

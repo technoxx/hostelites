@@ -5,10 +5,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostelites/resources/storage_methods.dart';
 
 import 'package:hostelites/utils/colors.dart';
-import 'package:hostelites/widgets/show_snackbar.dart';
 import 'package:hostelites/widgets/userdata.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../utils/utils.dart';
 
 class EditProfile extends StatefulWidget {
   final String uid;
@@ -31,6 +34,15 @@ class _EditProfileState extends State<EditProfile> {
 
   Uint8List? _image;
 
+  @override
+  void dispose() {
+    super.dispose();
+    _emailcontrol.dispose();
+    _passcontrol.dispose();
+    _roomcontrol.dispose();
+    _usernamecontrol.dispose();
+  }
+
   DocumentReference ref = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid);
@@ -40,6 +52,14 @@ class _EditProfileState extends State<EditProfile> {
     // TODO: implement initState
     super.initState();
     getData(widget.uid, context);
+  }
+
+  void selectImage() async {
+    Uint8List? im = await pickImage(ImageSource.gallery);
+    // set state because we need to display the image we selected on the circle avatar
+    setState(() {
+      _image = im;
+    });
   }
 
   @override
@@ -52,6 +72,8 @@ class _EditProfileState extends State<EditProfile> {
             Flexible(fit: FlexFit.tight, child: SizedBox()),
             InkWell(
               onTap: () async {
+                String photourl = await StorageMethods()
+                    .myUploadImageToStorage('profilePic', _image);
                 await ref.update({
                   'username': _usernamecontrol.text.trim(),
                   'password': _passcontrol.text.trim(),
@@ -59,6 +81,7 @@ class _EditProfileState extends State<EditProfile> {
                   'room': _roomcontrol.text.trim(),
                   'block': _blockcontrol.text.trim(),
                   'year': _yearcontrol.text.trim(),
+                  'photourl': photourl,
                 }).then((value) => Navigator.of(context).pop());
               },
               child: Text('Save'),
@@ -85,23 +108,20 @@ class _EditProfileState extends State<EditProfile> {
                           backgroundImage: MemoryImage(_image!),
                           backgroundColor: secondaryColor,
                         )
-                      : const CircleAvatar(
-                          radius: 64,
-                          child: Icon(CupertinoIcons.person),
+                      : CircleAvatar(
                           backgroundColor: secondaryColor,
+                          radius: 64,
+                          backgroundImage: NetworkImage(userData['photourl']),
                         ),
                   Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: selectImage,
                       icon: const Icon(Icons.add_a_photo),
                     ),
                   )
                 ],
-              ),
-              const SizedBox(
-                height: 20,
               ),
 
               //Textfield for username

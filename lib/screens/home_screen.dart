@@ -39,13 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Row(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     backgroundColor: secondaryColor,
-                    radius: 25,
-                    child: Icon(
-                      CupertinoIcons.person,
-                      size: 40,
-                    ),
+                    radius: 40,
+                    backgroundImage: NetworkImage(userData['photourl']),
                   ),
                   const SizedBox(
                     width: 10,
@@ -56,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: secondaryColor,
                       fontSize: 15,
                     ),
+                    maxLines: 3,
                   ),
                 ],
               ),
@@ -112,13 +110,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const Flexible(fit: FlexFit.tight, child: SizedBox()),
-                  IconButton(
-                    icon: const Icon(
-                      CupertinoIcons.person_circle_fill,
-                      size: 40,
-                      color: secondaryColor,
+                  InkWell(
+                    onTap: () => _key.currentState!.openEndDrawer(),
+                    child: CircleAvatar(
+                      backgroundColor: secondaryColor,
+                      radius: 17,
+                      backgroundImage: NetworkImage(userData['photourl']),
                     ),
-                    onPressed: () => _key.currentState!.openEndDrawer(),
                   ),
                 ],
               ),
