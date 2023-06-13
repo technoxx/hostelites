@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/utils/utils.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
-import 'package:hostelites/resources/auth_methods.dart';
+import 'package:hostelites/user/resources/auth_methods.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignupScreen extends StatefulWidget {

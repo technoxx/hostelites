@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/screens/complaint_screen.dart';
-import 'package:hostelites/screens/feedback_screen.dart';
-import 'package:hostelites/screens/home_screen.dart';
-import 'package:hostelites/screens/mess_screen.dart';
-import 'package:hostelites/screens/room.dart';
+import 'package:hostelites/user/screens/complaint_screen.dart';
+import 'package:hostelites/user/screens/feedback_screen.dart';
+import 'package:hostelites/user/screens/home_screen.dart';
+import 'package:hostelites/user/screens/mess_screen.dart';
+import 'package:hostelites/user/screens/room.dart';
 import 'package:hostelites/utils/colors.dart';
 
 class NavBar extends StatefulWidget {

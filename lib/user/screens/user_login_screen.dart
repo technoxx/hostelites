@@ -1,20 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/resources/auth_methods.dart';
-import 'package:hostelites/screens/home_screen.dart';
-import 'package:hostelites/screens/navbar.dart';
-import 'package:hostelites/screens/register.dart';
+import 'package:hostelites/user/resources/auth_methods.dart';
+import 'package:hostelites/user/screens/navbar.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/widgets/text_field_input.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class UserLoginScreen extends StatefulWidget {
+  const UserLoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<UserLoginScreen> createState() => _UserLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _UserLoginScreenState extends State<UserLoginScreen> {
   final TextEditingController _emailcontrol = TextEditingController();
   final TextEditingController _passcontrol = TextEditingController();
 
@@ -99,35 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: const Text("Don't have an account? "),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignupScreen()),
-                      );
-                    },
-                    //link for going to register page
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: const Text(
-                        'Register',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: mainColor),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ],

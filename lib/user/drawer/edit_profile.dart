@@ -5,13 +5,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/resources/storage_methods.dart';
+import 'package:hostelites/user/resources/storage_methods.dart';
 
 import 'package:hostelites/utils/colors.dart';
-import 'package:hostelites/widgets/userdata.dart';
+import 'package:hostelites/user/userdata.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../utils/utils.dart';
+import '../../utils/utils.dart';
 
 class EditProfile extends StatefulWidget {
   final String uid;

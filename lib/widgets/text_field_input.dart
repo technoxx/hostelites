@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hostelites/utils/colors.dart';
 
 class MyTextFieldInput extends StatelessWidget {
   final TextEditingController control;

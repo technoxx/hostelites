@@ -1,11 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/utils/colors.dart';
-import 'package:hostelites/widgets/show_snackbar.dart';
-import 'package:hostelites/widgets/text_field_input.dart';
-import 'package:uuid/uuid.dart';
 
 class ViewComplaint extends StatefulWidget {
   final Map data;

@@ -1,20 +1,14 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hostelites/firebase_options.dart';
 import 'package:hostelites/responsive/mobile_screen.dart';
 import 'package:hostelites/responsive/responsive_screen.dart';
 import 'package:hostelites/responsive/web_screen.dart';
-import 'package:hostelites/screens/complaint_screen.dart';
-import 'package:hostelites/screens/home_screen.dart';
-import 'package:hostelites/screens/input_complaint.dart';
-import 'package:hostelites/screens/login_screen.dart';
-import 'package:hostelites/screens/register.dart';
+import 'package:hostelites/login_screen.dart';
+import 'package:hostelites/user/screens/user_login_screen.dart';
 import 'package:hostelites/utils/colors.dart';
-import 'package:hostelites/widgets/tile.dart';
-import 'package:page_transition/page_transition.dart';
 
 void main() async {
   //initialize flutter widgets

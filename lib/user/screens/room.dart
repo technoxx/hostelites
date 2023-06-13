@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hostelites/available_rooms.dart/a.dart';
-import 'package:hostelites/available_rooms.dart/b.dart';
-import 'package:hostelites/available_rooms.dart/c.dart';
+import 'package:hostelites/user/available_rooms.dart/a.dart';
+import 'package:hostelites/user/available_rooms.dart/b.dart';
+import 'package:hostelites/user/available_rooms.dart/c.dart';
 import 'package:hostelites/utils/colors.dart';
 
 class AvailableRooms extends StatelessWidget {

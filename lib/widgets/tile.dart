@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:hostelites/screens/view_complaint.dart';
+import 'package:hostelites/user/screens/view_complaint.dart';
 import 'package:hostelites/utils/colors.dart';
 import 'package:hostelites/widgets/show_snackbar.dart';
-import 'package:hostelites/widgets/userdata.dart';
+import 'package:hostelites/user/userdata.dart';
 
 class MyTile extends StatefulWidget {
   final Map data;

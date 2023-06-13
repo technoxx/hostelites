@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelites/drawer/edit_profile.dart';
-import 'package:hostelites/drawer/settings.dart';
-import 'package:hostelites/screens/feedback_screen.dart';
-import 'package:hostelites/screens/input_complaint.dart';
+import 'package:hostelites/user/drawer/edit_profile.dart';
+import 'package:hostelites/user/drawer/settings.dart';
+import 'package:hostelites/user/screens/feedback_screen.dart';
+import 'package:hostelites/user/screens/input_complaint.dart';
 import 'package:hostelites/utils/colors.dart';
-import 'package:hostelites/widgets/userdata.dart';
+import 'package:hostelites/user/userdata.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
